@@ -3,7 +3,7 @@ import flask
 import os
 from flask import Flask,flash,redirect,render_template,request
 from werkzeug.utils import secure_filename
-app=Flask(__name__)
+app=Flask(__name__,template_folder='template')
 app.secret_key="secret key"
 app.config['MAX_CONTENT_LENGTH']=16*1024*1024
 path=os.getcwd()
@@ -29,7 +29,7 @@ def upload_file():
             return redirect(request.url)
         if file and allowed_files(file.filename):
             filename=secure_filename(file.filename)
-            file.save(os.path.join(app.config['UPLOAD_FOLDER'],filename))
+            file.save(os.path.join(app.config['UPLOAD_FOLDER']))
             flash('File Successfully Uploaded')
             return redirect('/')
         else:
