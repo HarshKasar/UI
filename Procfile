@@ -1,1 +1,1 @@
-web: gunicorn fileupload:app --log-file
+web: gunicorn fileupload.wsgi --log-file
